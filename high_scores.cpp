@@ -1,52 +1,47 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+using namespace std;
 
-int main() {
-
-	const std::string high_scores_filename = "high_scores.txt";
-
+string user_name() {
 	// Ask about name
-	std::cout << "Hi! Enter your name, please:" << std::endl;
-	std::string user_name;
-	std::cin >> user_name;
+	cout << "Hi! Enter your name, please:" << endl;
+	string user_name;
+	cin >> user_name;
+	return user_name;
+}
 
-	// Get the last high score
-	std::cout << "Enter your high score:" << std::endl;
-	int attempts_count = 0;
-	std::cin >> attempts_count;
-	if (std::cin.fail()) {
-		std::cout << "Bad value!" << std::endl;
-		return -1;
-	}
+void table_writer(string user_name, int attempts_count) {
+
+	const string high_scores_filename = "high_scores.txt";
 
 	// Write new high score to the records table
 	{
 		// We should open the output file in the append mode - we don't want
 		// to erase previous results.
-		std::ofstream out_file{high_scores_filename, std::ios_base::app};
+		ofstream out_file{high_scores_filename, ios_base::app};
 		if (!out_file.is_open()) {
-			std::cout << "Failed to open file for write: " << high_scores_filename << "!" << std::endl;
-			return -1;
+			cout << "Failed to open file for write: " << high_scores_filename << "!" << endl;
+			return;
 		}
 
 		// Append new results to the table:
 		out_file << user_name << ' ';
 		out_file << attempts_count;
-		out_file << std::endl;
+		out_file << endl;
 	} // end of score here just to mark end of the logic block of code
 
 	// Read the high score file and print all results
 	{
-		std::ifstream in_file{high_scores_filename};
+		ifstream in_file{high_scores_filename};
 		if (!in_file.is_open()) {
-			std::cout << "Failed to open file for read: " << high_scores_filename << "!" << std::endl;
-			return -1;
+			cout << "Failed to open file for read: " << high_scores_filename << "!" << endl;
+			return;
 		}
 
-		std::cout << "High scores table:" << std::endl;
+		cout << "High scores table:" << endl;
 
-		std::string username;
+		string username;
 		int high_score = 0;
 		while (true) {
 			// Read the username first
@@ -61,9 +56,7 @@ int main() {
 			}
 
 			// Print the information to the screen
-			std::cout << username << '\t' << high_score << std::endl;
+			cout << username << '\t' << high_score << endl;
 		}
 	}
-
-	return 0;
 }

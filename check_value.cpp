@@ -1,28 +1,33 @@
 #include <iostream>
+#include "random_value.cpp"
+#pragma once
+using namespace std;
 
-int main() {
+int check_value() {
 
-	const int target_value = 54;
+	int target_value = random_value();
 	int current_value = 0;
 	bool not_win = true;
+	int attempts = 0;
 
-	std::cout << "Enter your guess:" << std::endl;
+	cout << "Enter your guess:" << endl;
 
 	do {
-		std::cin >> current_value;
+		cin >> current_value;
+		attempts++;
 
-		if (current_value < target_value) {
-			std::cout << "less than " << current_value << std::endl;
+		if (current_value > target_value) {
+			cout << "less than " << current_value << endl;
 		}
-		else if (current_value > target_value) {
-			std::cout << "greater than " << current_value << std::endl;
+		else if (current_value < target_value) {
+			cout << "greater than " << current_value << endl;
 		}
 		else {
-			std::cout << "you win!" << std::endl;
+			cout << "you win! attempts = " << attempts << endl << endl;
 			break;
 		}
 
 	} while(true);
 
-	return 0;
+	return attempts;
 }
