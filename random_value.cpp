@@ -3,13 +3,15 @@
 #include <cstdlib>
 #include <ctime>
 
+using namespace std;
+
 int random_value() {
 
-	const int max_value = 100;
+	const int max_value = 10;
 
-	std::srand(std::time(nullptr)); // use current time as seed for random generator
+	srand(time(nullptr)); // use current time as seed for random generator
 
-	int value = std::rand() % 100;
+	int value = rand() % max_value;
 
 	return value;
 }
