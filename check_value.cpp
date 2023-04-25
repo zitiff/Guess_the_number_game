@@ -1,10 +1,15 @@
 #include <iostream>
+#include <limits>
 #include "random_value.cpp"
 #pragma once
 using namespace std;
 
-int check_value() {
+void ignoreLine()
+{
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
 
+int check_value() {
 	int target_value = random_value();
 	int current_value = 0;
 	bool not_win = true;
@@ -12,14 +17,14 @@ int check_value() {
 
 	cout << "Enter your guess:" << endl;
 
-	for(attempts = 1; not_win==true; attempts++)
-	{		
+	for (attempts = 1; not_win == true; attempts++)
+	{
 		cin >> current_value;
 
-		if (current_value > target_value) 
+		if (current_value > target_value)
 			cout << "less than " << current_value << endl;
-		
-		else if (current_value < target_value && current_value!=0) 
+
+		else if (current_value < target_value && current_value != 0)
 			cout << "greater than " << current_value << endl;
 
 		else if (current_value == target_value)
@@ -29,11 +34,12 @@ int check_value() {
 		}
 
 		else if (!(cin >> current_value)) // если ошибка ввода		
+		{
+			cin.clear();
 			cout << "Invalid input. Please try again.\n";
-
-		current_value = 0;
-	} 
-
-
+			ignoreLine();
+		}
+	}
 	return attempts;
 }
+
