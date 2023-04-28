@@ -9,6 +9,6 @@ using namespace std;
 int main() {
 	string name = user_name();
 	int attempts = check_value();
-	table_writer(name, attempts);
+	io(name, attempts);
 	return 0;
 }

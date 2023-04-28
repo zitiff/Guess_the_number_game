@@ -1,7 +1,6 @@
 #include <iostream>
 #include <limits>
 #include "random_value.cpp"
-#pragma once
 using namespace std;
 
 void ignoreLine()
@@ -24,7 +23,7 @@ int check_value() {
 		if (current_value > target_value)
 			cout << "less than " << current_value << endl;
 
-		else if (current_value < target_value && current_value != 0)
+		else if (current_value < target_value)
 			cout << "greater than " << current_value << endl;
 
 		else if (current_value == target_value)
