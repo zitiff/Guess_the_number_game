@@ -37,6 +37,6 @@ int check_value(int target_value) {
 			ignoreLine();
 		}
 	}
-	return attempts;
+	return (attempts-1);
 }
 

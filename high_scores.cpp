@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <map>
 using namespace std;
 
 string user_name() {
@@ -46,6 +47,7 @@ void io(string user_name, int attempts_count) {
 
 		string username;
 		int high_score = 0;
+		map <string, int> high_score_map;
 		while (true) {
 			// Read the username first
 			in_file >> username;
@@ -57,9 +59,21 @@ void io(string user_name, int attempts_count) {
 			if (in_file.fail()) {
 				break;
 			}
+			if (high_score_map.find(username) != high_score_map.end())
+			{
+				if (high_score < high_score_map.at(username))
+				{
+					high_score_map.at(username) = high_score;
+				}
+			}
+			else
+			high_score_map.insert(make_pair(username, high_score));
+		}
 
-			// Print the information to the screen
-			cout << username << '\t' << high_score << endl;
+		auto it = high_score_map.begin(); //выводим все рекорды
+		for (; it != high_score_map.end(); it++) 
+		{
+			cout << (*it).first << ' ' << it->second << '\n';			
 		}
 	}
 }
