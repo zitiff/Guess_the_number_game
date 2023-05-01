@@ -1,6 +1,5 @@
 #include <iostream>
 #include <limits>
-#include "random_value.cpp"
 using namespace std;
 
 void ignoreLine()
@@ -8,8 +7,7 @@ void ignoreLine()
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-int check_value() {
-	int target_value = random_value();
+int check_value(int target_value) {
 	int current_value = 0;
 	bool not_win = true;
 	int attempts = 1;
@@ -23,7 +21,7 @@ int check_value() {
 		if (current_value > target_value)
 			cout << "less than " << current_value << endl;
 
-		else if (current_value < target_value)
+		else if (current_value < target_value && current_value!=0)
 			cout << "greater than " << current_value << endl;
 
 		else if (current_value == target_value)

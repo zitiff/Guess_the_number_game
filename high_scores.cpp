@@ -11,7 +11,7 @@ string user_name() {
 	return user_name;
 }
 
-void table_writer(string user_name, int attempts_count) {
+void io(string user_name, int attempts_count) {
 
 	const string high_scores_filename = "high_scores.txt";
 
