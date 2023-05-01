@@ -26,9 +26,12 @@ void io(string user_name, int attempts_count) {
 		}
 
 		// Append new results to the table:
-		out_file << user_name << ' ';
-		out_file << attempts_count;
-		out_file << endl;
+		if (attempts_count != 0)
+		{
+			out_file << user_name << ' ';
+			out_file << attempts_count;
+			out_file << endl;
+		}
 	} // end of score here just to mark end of the logic block of code
 
 	// Read the high score file and print all results
